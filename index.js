@@ -1,28 +1,59 @@
 const express = require('express')
-const app=express()
+const app = express()
+const axios = require('axios')
+const bodyParser = require('body-parser');
 
-const axios=require('axios')
+
+//mongodb
+const { connectToDb, getDb } = require('./db')
+const { ObjectId } = require('mongodb')
+
+// db connection
+let db
+connectToDb((err) => {
+    if (!err) {
+        app.listen(process.env.PORT || 9000, () => {
+        })
+        db = getDb()
+    }
+})
+
+
 
 const port = 9000;
 
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())
 
 
-app.listen(9000, () => {
-      
-  console.log(`Server is running on Port ${port}`);
-});
+// app.listen(9000, () => {
+
+//     console.log(`Server is running on Port ${port}`);
+// });
 
 app.get("/", (req, res) => {
+
+    let blogs = []
+    db.collection('blogs')
+        .find()
+        .sort({ _id: -1 })
+        .forEach(blog => blogs.push(blog))
+        .then(() => {
+console.log(blogs);
+            // res.render('index', { articles: blogs })
+        })
+        .catch((err) => {
+            // res.status(500).json({ error: 'could not get data' })
+        })
+
     fetch1()
- async function fetch1(){
+    async function fetch1() {
         // const result = await axios('https://randomuser.me/api/')
         // console.log("result2");
-        fetch('https://randomuser.me/api/')
-  .then((response) => response.json())
-  .then((data) =>  res.json(data));
+        fetch('https://trial2-three.vercel.app/')
+            .then((response) => response.json())
+            .then((data) => res.json(data));
     }
-    
-//   res.json({ message: "result" });
+
+    //   res.json({ message: "result" });
 });
