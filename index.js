@@ -21,8 +21,8 @@ app.get("/", (req, res) => {
         // console.log("result2");
         fetch('https://randomuser.me/api/')
   .then((response) => response.json())
-  .then((data) => console.log(data));
+  .then((data) =>  res.json(data));
     }
     
-  res.json({ message: "result" });
+//   res.json({ message: "result" });
 });
