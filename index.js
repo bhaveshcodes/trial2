@@ -41,7 +41,7 @@ console.log("here");
         .forEach(blog => blogs.push(blog))
         .then((response) => {
             console.log("in .then response");
-            res.json(blogs)
+            // res.json(blogs)
             console.log(blogs);
             // res.render('index', { articles: blogs })
         })
@@ -58,5 +58,5 @@ console.log("here");
     //         .then((data) => res.json(data));
     // }
 
-    //   res.json({ message: "result" });
+      res.json({ message: "result" });
 });
