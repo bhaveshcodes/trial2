@@ -23,8 +23,8 @@ connectToDb((err) => {
 
 const port = 9000;
 
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json())
 
 
 // app.listen(9000, () => {
