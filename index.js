@@ -9,8 +9,8 @@ app.use("/", (req, res) => {
 });
 
 app.listen(9000, async() => {
-    // const result = await axios(`https://randomuser.me/api/`)
-    // console.log(result);
+     const result = await axios(`https://randomuser.me/api/`)
+    console.log(result);
   console.log(`Server is running on Port ${port}`);
 });
 
