@@ -1,16 +1,28 @@
-import express from "express";
+const express = require('express')
+const app=express()
 
-const app = express();
+const axios=require('axios')
 
 const port = 9000;
 
-app.use("/", (req, res) => {
-  res.json({ message: "Hello @Vercel" });
-});
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json())
 
-app.listen(9000, async() => {
-    // const result = await axios(`https://randomuser.me/api/`)
-    // console.log(result);
+
+app.listen(9000, () => {
+      
   console.log(`Server is running on Port ${port}`);
 });
 
+app.get("/", (req, res) => {
+    fetch1()
+ async function fetch1(){
+        // const result = await axios('https://randomuser.me/api/')
+        // console.log("result2");
+        fetch('https://randomuser.me/api/')
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+    }
+    
+  res.json({ message: "result" });
+});
