@@ -13,6 +13,7 @@ let db
 connectToDb((err) => {
     if (!err) {
         app.listen(process.env.PORT || 9000, () => {
+            console.log("running on port 9000");
         })
         db = getDb()
     }
@@ -22,8 +23,8 @@ connectToDb((err) => {
 
 const port = 9000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json())
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.json())
 
 
 // app.listen(9000, () => {
@@ -32,28 +33,30 @@ app.use(express.json())
 // });
 
 app.get("/", (req, res) => {
-
+console.log("here");
     let blogs = []
     db.collection('blogs')
         .find()
         .sort({ _id: -1 })
         .forEach(blog => blogs.push(blog))
-        .then(() => {
-console.log(blogs);
+        .then((response) => {
+            console.log("in .then response");
+            res.json(blogs)
+            console.log(blogs);
             // res.render('index', { articles: blogs })
         })
         .catch((err) => {
             // res.status(500).json({ error: 'could not get data' })
         })
 
-    fetch1()
-    async function fetch1() {
-        // const result = await axios('https://randomuser.me/api/')
-        // console.log("result2");
-        fetch('https://trial2-three.vercel.app/')
-            .then((response) => response.json())
-            .then((data) => res.json(data));
-    }
+    // fetch1()
+    // async function fetch1() {
+    //     // const result = await axios('https://randomuser.me/api/')
+    //     // console.log("result2");
+    //     fetch('https://trial2-three.vercel.app/')
+    //         .then((response) => response.json())
+    //         .then((data) => res.json(data));
+    // }
 
     //   res.json({ message: "result" });
 });
