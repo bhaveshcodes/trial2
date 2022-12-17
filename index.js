@@ -54,8 +54,8 @@ console.log("here");
         // const result = await axios('https://randomuser.me/api/')
         // console.log("result2");
         fetch('https://randomuser.me/api/')
-            .then((response) => response.json())
-            .then((data) => res.json(data));
+            // .then((response) => response.json())
+            .then((data) => res.send("data"));
     }
 
     //   res.json({ message: "result" });
