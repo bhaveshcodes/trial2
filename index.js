@@ -12,7 +12,8 @@ const { ObjectId } = require('mongodb')
 let db
 connectToDb((err) => {
     if (!err) {
-        app.listen(9000, () => {
+        const PORT=process.env.PORT || 9000
+        app.listen(PORT, () => {
             console.log("running on port 9000");
         })
         db = getDb()
